@@ -1,0 +1,17 @@
+<a href="#/" class="returnList">Return to List</a>
+<h1 class="addTitle">Add New Link</h1>
+<form name="addForm" ng-submit="addLinks()" novalidate>
+    <div>
+        <label for="link_name">Link Name:</label>
+        <input type="text" id="link_name" name="link_name" ng-model="linkName" placeholder="e.g. Alphabet" required>
+    </div>
+    <div>
+        <label for="link_url">Link URL:</label>
+        <input type="text" id="link_url" name="link_url" ng-model="linkUrl" placeholder="e.g. http://abc.xyz" required>
+    </div>
+    <input type="submit" value="ADD" ng-disabled="addForm.link_name.$invalid || addForm.link_url.$invalid">
+</form>
+<div id="messageWrap">
+    <div id="message"><span>{{ message | uppercase }}</span> added.</div>
+</div>
+

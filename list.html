@@ -1,0 +1,45 @@
+<div class="submitLink">
+    <a href="#/add">SUBMIT A LINK</a>
+</div>
+<div class="selectArea">
+    <select ng-model="orderLink">
+        <option value="-date">Order by</option>
+        <option value="-vote">Most Voted</option>
+        <option value="vote">Less Voted</option>
+    </select>
+</div>
+<div class="linksArea">
+    <div class="linkBox clearfix" ng-repeat="link in links | orderBy: orderLink track by $index">
+        <a ng-click="removeLinks(link)" class="removeLinks"></a>
+        <div class="vote">
+            <span>{{ link.vote }}</span>
+            <span>POINTS</span>
+        </div>
+        <div class="links">
+            <span class="linkName">{{ link.name }}</span>
+            <span class="linkUrl"><a href="{{ link.url }}" target="_blank">({{ link.url }})</a></span>
+        </div>
+        <div class="voteLinks">
+            <a ng-click="upVote(link)" class="upVote">Up Vote</a>
+            <a ng-click="downVote(link)" class="downVote">Down Vote</a>
+        </div>
+    </div>
+</div>
+
+<div id="messageWrap">
+    <div id="message"><span>{{ message | uppercase }}</span> removed.</div>
+</div>
+<div id="removePopup">
+    <div class="removeHeader">
+        <span>Remove Link</span>
+        <a ng-click="closePopup()">x</a>
+    </div>
+    <div class="removeContent">
+        <span>Do you want to remove:</span>
+        <span class="removeName">{{ message | uppercase }}</span>
+        <div class="removeButtons">
+            <a ng-click="remove(no)">OK</a>
+            <a ng-click="closePopup()">CANCEL</a>
+        </div>
+    </div>
+</div>

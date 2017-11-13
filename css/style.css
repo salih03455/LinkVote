@@ -1,0 +1,477 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #000;
+    position: relative;
+}
+
+.clearfix:after,
+.clearfix:before {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+div.container {
+    width: 90%;
+    max-width: 570px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+/* List Page: */
+
+div.submitLink {
+    margin: 0 12px 20px;
+    border: 1px solid #ebebeb;
+    border-radius: 8px;
+    background-color: #f7f7f7;
+}
+
+div.submitLink a {
+    color: #000;
+    font-size: 39px;
+    padding: 50px 70px 50px 0;
+    display: block;
+    text-align: right;
+    background: url(../images/plus.png) 12px center no-repeat;
+}
+
+div.selectArea {
+    border-top: 5px solid #ececec;
+    padding: 16px;
+}
+
+div.selectArea select {
+    border: 1px solid #d6d1d1;
+    outline: none;
+    box-shadow: none;
+    padding: 11px 35px 11px 10px;
+    width: 260px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background: #f1f1f1 url(../images/icon_selectbox.png) right center no-repeat;
+    font-size: 18px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+div.selectArea select::-ms-expand {
+    display: none;
+}
+
+div.linkBox {
+    margin-bottom: 20px;
+    border: 1px solid #fff;
+    padding: 10px;
+    border-radius: 6px;
+    -webkit-transition: .2s;
+    -moz-transition: .2s;
+    transition: .2s;
+    position: relative;
+}
+
+div.linkBox:hover {
+    background-color: #f7f7f7;
+    border-color: #eaeaea;
+}
+
+div.linkBox a {
+    cursor: pointer;
+}
+
+div.linkBox a.removeLinks {
+    display: none;
+    width: 30px;
+    height: 30px;
+    background: url(../images/remove.png) center center no-repeat;
+    border-radius: 15px;
+    border: 2px solid #fff;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    box-shadow: 0px 0px 12px #8c8c8c;
+}
+
+div.linkBox:hover a.removeLinks {
+    display: block;
+}
+
+div.linkBox div.vote {
+    width: 122px;
+    height: 122px;
+    border: 1px solid #a3a3a3;
+    background-color: #ececec; 
+    border-radius: 6px;
+    float: left;
+}
+
+div.linkBox div.vote span {
+    display: block;
+    text-align: center;
+}
+
+div.linkBox div.vote span:first-child {
+    font-weight: 700;
+    font-size: 50px;
+    padding: 24px 0 4px;
+    line-height: 50px;
+}
+
+div.linkBox div.vote span:last-child {
+    font-size: 18px;
+}
+
+div.linkBox div.links {
+    margin: 0 0 36px 140px;
+    overflow: hidden;
+}
+
+div.linkBox div.links span {
+    display: block;
+}
+
+div.linkBox div.links span.linkName {
+    font-size: 24px;
+    line-height: 30px;
+    padding-bottom: 3px;
+}
+
+div.linkBox div.links span.linkUrl {
+    font-size: 18px;
+}
+
+div.linkBox div.links span.linkUrl a {
+    color: #848484;
+}
+
+div.linkBox div.voteLinks {
+    margin-left: 140px;
+}
+
+div.linkBox div.voteLinks a {
+    color: #848484;
+    font-weight: 700;
+    font-size: 16px;
+    display: inline-block;
+    padding-left: 30px;
+    line-height: 21px;
+}
+
+div.linkBox div.voteLinks a.upVote {
+    background: url(../images/up.png) left center no-repeat;
+    margin-right: 45px;
+}
+
+div.linkBox div.voteLinks a.downVote {
+    background: url(../images/down.png) left center no-repeat;
+}
+
+/* Add Page */
+
+a.returnList {
+    color: #000;
+    display: inline-block;
+    padding-left: 30px;
+    background: url(../images/return.png) left center no-repeat;
+    font-size: 20px;
+    margin-bottom: 50px;
+}
+
+h1.addTitle {
+    font-size: 35px;
+    margin-bottom: 50px;
+}
+
+label {
+    display: block;
+    font-size: 20px;
+    line-height: 30px;
+    padding-left: 12px;
+}
+
+input[type=text] {
+    border: 1px solid #969696;
+    padding: 20px 10px;
+    width: 100%;
+    border-radius: 6px;
+    outline: none;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+input[type=submit] {
+    border: none;
+    width: 200px;
+    height: 60px;
+    border-radius: 30px;
+    background: #000;
+    color: #fff;
+    font-weight: 700;
+    font-size: 30px;
+    float: right;
+    margin-top: 10px;
+    outline: none !important;
+}
+
+/* Popup: */
+
+div#messageWrap {
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    top: 5%;
+    max-width: 90%;
+    margin: auto;
+    text-align: center;
+    display: none;
+}
+
+div#messageWrap.active {
+    display: block;
+}
+
+div#message {
+    padding: 0 70px;
+    background-color: #dcf9d3;
+    border: 2px solid #5aad5a;
+    border-radius: 8px;
+    color: #5aad5a;
+    height: 95px;
+    line-height: 95px;
+    font-size: 30px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.50);
+    display: inline-block;
+    margin: auto;
+}
+
+div#message span {
+    font-weight: 700;
+}
+
+div#bg {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.69);
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 1;
+    display: none;
+}
+
+div#bg.active {
+    display: block;
+}
+
+div#removePopup {
+    width: 700px;
+    height: 330px;
+    border: 1px solid #838383;
+    background-color: #d7d7d7;
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.79);
+    display: none;
+    max-width: 90%;
+}
+
+div#removePopup.active {
+    display: block;
+}
+
+div#removePopup div.removeHeader {
+    height: 50px;
+    padding: 0 20px;
+    background-color: #000;
+}
+
+div#removePopup div.removeHeader span {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 50px;
+    color: #fff;
+}
+
+div#removePopup div.removeHeader a {
+    float: right;
+    line-height: 45px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+div#removePopup .removeContent {
+    text-align: center;
+    padding: 50px 10px 45px;
+}
+
+div#removePopup .removeContent span {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+    color: #595959;
+    font-size: 24px;
+    padding-bottom: 6px;
+}
+
+div#removePopup .removeContent span.removeName {
+    color: #000;
+    font-size: 34px;
+    font-weight: 700;
+    height: 34px;
+    line-height: 34px;
+}
+
+div#removePopup .removeContent .removeButtons {
+    margin-top: 40px;
+}
+
+div#removePopup .removeContent .removeButtons a {
+    display: inline-block;
+    width: 200px;
+    height: 60px;
+    line-height: 60px;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+div#removePopup .removeContent .removeButtons a:first-child {
+    margin-right: 70px;
+}
+
+@media (max-width: 768px) {
+    /* List Page: */
+    div.submitLink {
+        margin: 0 6px 20px;
+    }
+    div.submitLink a {
+        font-size: 30px;
+        background-size: 90px;
+        padding-right: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* List Page: */
+    div.submitLink {
+        margin: 0 0 20px;
+    }
+    div.submitLink a {
+        font-size: 24px;
+        background-size: 60px;
+        padding: 40px 24px 40px 0;
+    }
+    div.selectArea {
+        padding: 16px 0;
+    }
+    div.selectArea select {
+        width: 100%;
+    }
+    div.linkBox {
+        padding: 10px 0 10px 10px;
+        margin-bottom: 10px;
+    }
+    div.linkBox div.vote {
+        width: 100px;
+        height: 100px;
+    }
+    div.linkBox div.vote span:first-child {
+        padding-top: 12px;
+        font-size: 42px;
+    }
+    div.linkBox div.vote span:last-child {
+        font-size: 16px;
+    }
+    div.linkBox div.links {
+        margin: 0 0 28px 112px;
+    }
+    div.linkBox div.links span.linkName {
+        font-size: 20px;
+        line-height: 26px;
+    }
+    div.linkBox div.links span.linkUrl {
+        font-size: 15px;
+    }
+    div.linkBox div.voteLinks {
+        margin-left: 112px;
+    }
+    div.linkBox div.voteLinks a {
+        font-size: 13px;
+        padding-left: 20px;
+    }
+    div.linkBox div.voteLinks a.upVote {
+        background-size: 18px;
+        margin-right: 8px;
+    }
+    div.linkBox div.voteLinks a.downVote {
+        background-size: 18px;
+    }
+    /* Add Page */
+    h1.addTitle {
+        font-size: 28px;
+    }
+    input[type=text] {
+        padding: 14px 10px;
+    }
+    input[type=submit] {
+        width: 140px;
+        height: 50px;
+        font-size: 24px;
+    }
+    /* Popup: */
+    div#message {
+        font-size: 16px;
+        height: 50px;
+        line-height: 50px;
+    }
+    div#removePopup {
+        height: 246px;
+    }
+    div#removePopup .removeContent {
+        padding: 30px 10px 25px
+    }
+    div#removePopup .removeContent span {
+        font-size: 16px;
+        height: 24px;
+        line-height: 24px;
+    }
+    div#removePopup .removeContent span.removeName {
+        font-size: 24px;
+    }
+    div#removePopup .removeContent .removeButtons a {
+        font-size: 20px;
+        width: 110px;
+        height: 40px;
+        line-height: 40px;
+    }
+    div#removePopup .removeContent .removeButtons a:first-child {
+        margin-right: 25px;
+    }
+}

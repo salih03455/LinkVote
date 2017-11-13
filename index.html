@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>LinkVote Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.angularjs.org/1.5.0/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.5.0/angular-route.js"></script>
+    <script type="text/javascript">
+        var exApp = angular.module("exApp", ["ngRoute"]);
+
+        exApp.config(function($routeProvider){
+            $routeProvider
+                .when("/", {templateUrl:"./list.html", controller:"addCtrl"})
+                .when("/add", {templateUrl:"./add.html", controller:"addCtrl"})
+                .when("/404", {templateUrl:"./404.html"})
+                .otherwise("/404");
+        });
+
+        exApp.controller("addCtrl", function($scope, $window, $interval){
+
+            $scope.orderLink = "-date";
+
+            var date = new Date();
+            var date2 = date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2) + ' - ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2) + ':' + ('0' + date.getSeconds()).slice(-2);
+
+            $scope.saved = localStorage.getItem('links');
+            $scope.links = (localStorage.getItem('links')!==null) ? JSON.parse($scope.saved) : [ {name: 'Google', url: "https://google.com", vote: 0, date: date2}, {name: 'Facebook', url: "https://facebook.com", vote: 0, date: date2} ];
+            localStorage.setItem('links', JSON.stringify($scope.links));
+
+            $scope.addLinks = function(){
+                var date2 = date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2) + ' - ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2) + ':' + ('0' + date.getSeconds()).slice(-2);
+                
+                $scope.links.push({
+                    name: $scope.linkName,
+                    url: $scope.linkUrl,
+                    vote: 0,
+                    date: date2
+                });
+                localStorage.setItem('links', JSON.stringify($scope.links));
+                angular.element(messageWrap).addClass("active");
+                $scope.message = $scope.linkName;
+                $scope.linkName = "";
+                $scope.linkUrl = "";
+                $interval(function(){
+                    angular.element(messageWrap).removeClass("active");
+                }, 3000);
+            };
+
+            $scope.removeLinks = function(no){
+                var delNo = $scope.links.indexOf(no);
+                $scope.message = $scope.links[delNo].name;
+                angular.element(removePopup).addClass("active");
+                angular.element(body).css("overflow", "hidden");
+                angular.element(bg).addClass("active");
+            }
+
+            $scope.closePopup = function(){
+                angular.element(bg).removeClass("active");
+                angular.element(body).css("overflow", "auto");
+                angular.element(removePopup).removeClass("active");
+            }
+
+            $scope.remove = function(no){
+                var delNo = $scope.links.indexOf(no);
+                $scope.links.splice(delNo, 1);
+                localStorage.setItem('links', JSON.stringify($scope.links));
+                angular.element(bg).removeClass("active");
+                angular.element(body).css("overflow", "auto");
+                angular.element(removePopup).removeClass("active");
+                angular.element(messageWrap).addClass("active");
+                $interval(function(){
+                    angular.element(messageWrap).removeClass("active");
+                }, 3000);
+            }
+
+            $scope.upVote = function(no){
+                var date = new Date();
+                var date2 = date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2) + ' - ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2) + ':' + ('0' + date.getSeconds()).slice(-2);
+
+
+                var voteNo = $scope.links.indexOf(no);
+                $scope.links[voteNo].vote += 1;
+                $scope.links[voteNo].date = date2;
+                localStorage.setItem('links', JSON.stringify($scope.links));
+            }
+
+            $scope.downVote = function(no){
+                var date = new Date();
+                var date2 = date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2) + ' - ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2) + ':' + ('0' + date.getSeconds()).slice(-2);
+
+
+                var voteNo = $scope.links.indexOf(no);
+                $scope.links[voteNo].vote -= 1;
+                $scope.links[voteNo].date = date2;
+                localStorage.setItem('links', JSON.stringify($scope.links));
+            }
+        });
+    </script>
+</head>
+<body ng-app="exApp" id="body">
+    <div class="container">
+        <div id="bg"></div>
+        <div ng-view></div>
+    </div>
+</body>
